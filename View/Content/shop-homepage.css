@@ -1,0 +1,11 @@
+body {
+  padding-top: 56px;
+  background-color:aqua;
+}
+
+.footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
+

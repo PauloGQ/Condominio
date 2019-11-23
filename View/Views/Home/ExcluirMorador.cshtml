@@ -1,0 +1,58 @@
+﻿@model Model.Morador
+
+@{
+    Layout = null;
+    ViewBag.Title = "ExcluirMorador";
+}
+
+<div class="modal-dialog">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center text-danger" id="exampleModalLabel">Tem certeza de que deseja excluir este registro?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">@Html.DisplayNameFor(model => model.IdMorador)</label>
+                    <input type="text" class="form-control" id="recipient-id" disabled="disabled" value="@Html.DisplayFor(model => model.IdMorador)">
+                </div>
+
+                <div class="form-group">
+                    <label for="message-text" class="control-label">@Html.DisplayNameFor(model => model.Nome)</label>
+                    <input type="text" class="form-control" id="recipient-nome" disabled="disabled" value="@Html.DisplayFor(model => model.Nome)">
+                </div>
+
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">@Html.DisplayNameFor(model => model.Email)</label>
+                    <p class="input-group-text disabled">@Html.DisplayFor(model => model.Email)</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">@Html.DisplayNameFor(model => model.Cpf)</label>
+                    <input type="text" class="form-control" id="recipient-cpf" disabled="disabled" value="@Html.DisplayFor(model => model.Cpf)">
+                </div>
+
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">@Html.DisplayNameFor(model => model.Telefone)</label>
+                    <input type="text" class="form-control" id="recipient-cpf" disabled="disabled" value="@Html.DisplayFor(model => model.Telefone)">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Excluir" class="btn btn-danger" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+

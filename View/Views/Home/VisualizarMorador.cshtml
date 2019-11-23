@@ -1,0 +1,90 @@
+﻿@model Model.Morador
+
+@{
+    ViewBag.Title = "VisualizarMorador";
+}
+
+<h2>VisualizarMorador</h2>
+
+<div>
+    <h4>Morador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdMorador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdMorador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdApartamentoFkMorador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdApartamentoFkMorador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bloco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bloco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vaga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vaga)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
