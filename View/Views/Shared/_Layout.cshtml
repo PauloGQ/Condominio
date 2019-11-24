@@ -308,8 +308,8 @@
         $(function () {
             $(".delete").click(function () {
                 var id = $(this).attr("data-id");
-                $("#modal").load("ExcluirMorador/" + id, function () {
-                    $("#modal").modal();
+                $("#modalexcluimorador").load("ExcluirMorador/" + id, function () {
+                    $("#modalexcluimorador").modal();
                 })
             });
         })
@@ -317,10 +317,10 @@
 
     <script>
         $(function () {
-            $(".delete").click(function () {
+            $(".detalhes").click(function () {
                 var id = $(this).attr("data-id");
-                $("#modal2").load("ExcluirFuncionario/" + id, function () {
-                    $("#modal2").modal();
+                $("#modallistamorador").load("VisualizarMorador/" + id, function () {
+                    $("#modallistamorador").modal();
                 })
             });
         })

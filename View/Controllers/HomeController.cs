@@ -10,6 +10,8 @@ namespace View.Controllers
 {
     public class HomeController : Controller
     {
+
+
         public ActionResult Index()
         {
             //Instancia a controller de RN (SERVICE)
@@ -19,6 +21,8 @@ namespace View.Controllers
 
             return View(lst);
         }
+
+
         public ActionResult ListaMorador()
         {
             //Instancia a controller de RN (SERVICE)
@@ -28,6 +32,7 @@ namespace View.Controllers
 
             return View(lst);
         }
+
 
         public ActionResult VisualizarMorador(int id)
         {

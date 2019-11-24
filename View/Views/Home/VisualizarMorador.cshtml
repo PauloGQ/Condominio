@@ -1,90 +1,49 @@
 ﻿@model Model.Morador
 
+
 @{
+    Layout = null;
     ViewBag.Title = "VisualizarMorador";
 }
 
-<h2>VisualizarMorador</h2>
+<div class="modal-dialog">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center text-danger" id="exampleModalLabel">Detalhes do Morador</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
-<div>
-    <h4>Morador</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdMorador)
-        </dt>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.IdMorador)
-        </dd>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">@Html.DisplayNameFor(model => model.IdMorador)</label>
+                    <input type="text" class="form-control" id="recipient-id" disabled="disabled" value="@Html.DisplayFor(model => model.IdMorador)">
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+                <div class="form-group">
+                    <label for="message-text" class="control-label">@Html.DisplayNameFor(model => model.Nome)</label>
+                    <input type="text" class="form-control" id="recipient-nome" disabled="disabled" value="@Html.DisplayFor(model => model.Nome)">
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">@Html.DisplayNameFor(model => model.Email)</label>
+                    <p class="input-group-text disabled">@Html.DisplayFor(model => model.Email)</p>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">@Html.DisplayNameFor(model => model.Cpf)</label>
+                    <input type="text" class="form-control" id="recipient-cpf" disabled="disabled" value="@Html.DisplayFor(model => model.Cpf)">
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cpf)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cpf)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Telefone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Telefone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdApartamentoFkMorador)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdApartamentoFkMorador)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Apt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Apt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Bloco)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Bloco)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Vaga)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Vaga)
-        </dd>
-
-    </dl>
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">@Html.DisplayNameFor(model => model.Telefone)</label>
+                    <input type="text" class="form-control" id="recipient-cpf" disabled="disabled" value="@Html.DisplayFor(model => model.Telefone)">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
