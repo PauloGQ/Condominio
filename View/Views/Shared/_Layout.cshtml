@@ -70,9 +70,9 @@
             <!-- Item de Navegação - Filme  -->
             <!-- Item de Navegação - Clientes -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="@Url.Action("Index", "Home")">
+                <a class="nav-link collapsed" href="@Url.Action("ListarComunicado", "Home")">
                     <i class="fas fa-user"></i>
-                    <span>Clientes</span>
+                    <span>Comunicados</span>
                 </a>
             </li>
 
@@ -336,6 +336,30 @@
             });
         })
     </script>
+
+    <!-- COMUNICADO EXCLUIR E DETALHES-->
+    <script>
+        $(function () {
+            $(".delete").click(function () {
+                var id = $(this).attr("data-id");
+                $("#modaldeletecomunicado").load("ExcluirComunicado/" + id, function () {
+                    $("#modaldeletecomunicado").modal();
+                })
+            });
+        })
+    </script>
+
+    <script>
+        $(function () {
+            $(".detalhe").click(function () {
+                var id = $(this).attr("data-id");
+                $("#modaldetalhecomunicado").load("VisualizarComunicado/" + id, function () {
+                    $("#modaldetalhecomunicado").modal();
+                })
+            });
+        })
+    </script>
+
 
 
     <!--

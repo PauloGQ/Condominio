@@ -158,6 +158,11 @@
     <Content Include="Views\Home\InserirSindico.cshtml" />
     <Content Include="Views\Home\EditarSindico.cshtml" />
     <Content Include="Views\Home\ExcluirSindico.cshtml" />
+    <Content Include="Views\Home\ListarComunicado.cshtml" />
+    <Content Include="Views\Home\VisualizarComunicado.cshtml" />
+    <Content Include="Views\Home\InserirComunicado.cshtml" />
+    <Content Include="Views\Home\EditarComunicado.cshtml" />
+    <Content Include="Views\Home\ExcluirComunicado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

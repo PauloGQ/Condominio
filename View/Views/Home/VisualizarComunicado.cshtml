@@ -1,0 +1,58 @@
+﻿@model Model.Comunicado
+
+@{
+    ViewBag.Title = "VisualizarComunicado";
+}
+
+<h2>VisualizarComunicado</h2>
+
+<div>
+    <h4>Comunicado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdComunicado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdComunicado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataComunicado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataComunicado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdSindicoFkComunicado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdSindicoFkComunicado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

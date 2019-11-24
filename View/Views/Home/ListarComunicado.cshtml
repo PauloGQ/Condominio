@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Model.Comunicado>
+
+@{
+    ViewBag.Title = "ListarComunicado";
+}
+
+<h2>ListarComunicado</h2>
+
+<h6 class="m-0 font-weight-bold text-primary">
+    <a href="@Url.Action("InserirComunicado", "Home" )"
+       class="btn btn-success btn-icon-split">
+        <span class="icon text-white-50">
+            <i class="fas fa-check"></i>
+        </span>
+        <span class="text">Novo Comunicado</span>
+    </a>
+</h6>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdComunicado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataComunicado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdSindicoFkComunicado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdComunicado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataComunicado)
+            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSindicoFkComunicado)
+            </td>
+            <td>
+                <a href="@Url.Action("EditarComunicado", "Home" , new { id=item.IdComunicado })" class="btn btn-success btn-circle btn-sm">
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
+
+                <a href="@Url.Action("VisualizarComunicado", "Home" , new { id=item.IdComunicado })" class="btn btn-warning btn-circle btn-sm">
+                    <i class="fas fa-info"></i>
+                </a>
+
+                <button class="btn btn-warning btn-circle btn-sm detalhe" data-id="@item.IdComunicado"><i class="fas fa-info"></i></button>
+                <button class="btn btn-danger btn-circle btn-sm delete" data-id="@item.IdComunicado"><i class="fas fa-trash"></i></button>
+
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="modal" id="modaldetalhecomunicado">
+
+</div>
+
+<div class="modal" id="modaldeletecomunicado">
+
+</div>

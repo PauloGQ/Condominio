@@ -173,5 +173,86 @@ namespace View.Controllers
 
             return RedirectToAction("ListaSindico");
         }
+
+
+        //----- Comunicado
+
+        public ActionResult ListarComunicado()
+        {
+            //Instancia a controller de RN (SERVICE)
+            ComunicadoController controller = new ComunicadoController();
+
+            List<Comunicado> lst = controller.Listar();
+
+            return View(lst);
+        }
+
+
+        public ActionResult VisualizarComunicado(int id)
+        {
+            ComunicadoController controller = new ComunicadoController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+        public ActionResult InserirComunicado()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult InserirComunicado(Comunicado registro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registro);
+            }
+
+            ComunicadoController controller = new ComunicadoController();
+            controller.Inserir(registro);
+            return RedirectToAction("ListarComunicado");
+        }
+
+        public ActionResult EditarComunicado(int id)
+        {
+            ComunicadoController controller = new ComunicadoController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+        [HttpPost]
+        public ActionResult EditarComunicado(Comunicado registro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registro);
+            }
+
+            ComunicadoController controller = new ComunicadoController();
+            controller.Atualizar(registro);
+
+            return RedirectToAction("ListarComunicado");
+        }
+
+
+        public ActionResult ExcluirComunicado(int id)
+        {
+            ComunicadoController controller = new ComunicadoController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+
+        [HttpPost, ActionName("ExcluirComunicado")]
+        public ActionResult ExcluirComunicadoConfirmar(int id)
+        {
+            ComunicadoController controller = new ComunicadoController();
+            controller.Excluir(id);
+
+            return RedirectToAction("ListarComunicado");
+        }
     }
 }
