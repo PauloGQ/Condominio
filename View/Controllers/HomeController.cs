@@ -101,6 +101,82 @@ namespace View.Controllers
             return RedirectToAction("ListaMorador");
         }
 
+        //---- Sindico
 
+        public ActionResult ListaSindico()
+        {
+            //Instancia a controller de RN (SERVICE)
+            SindicoController controller = new SindicoController();
+
+            List<Sindico> lst = controller.Listar();
+
+            return View(lst);
+        }
+
+        public ActionResult VisualizarSindico(int id)
+        {
+            SindicoController controller = new SindicoController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+        public ActionResult InserirSindico()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult InserirSindico(Sindico registro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registro);
+            }
+
+            SindicoController controller = new SindicoController();
+            controller.Inserir(registro);
+            return RedirectToAction("ListaSindico");
+        }
+
+        public ActionResult EditarSindico(int id)
+        {
+            SindicoController controller = new SindicoController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+        [HttpPost]
+        public ActionResult EditarSindico(Sindico registro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registro);
+            }
+
+            SindicoController controller = new SindicoController();
+            controller.Atualizar(registro);
+
+            return RedirectToAction("ListaSindico");
+        }
+
+        public ActionResult ExcluirSindico(int id)
+        {
+            SindicoController controller = new SindicoController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+
+        [HttpPost, ActionName("ExcluirSindico")]
+        public ActionResult ExcluirSindicoConfirmar(int id)
+        {
+            SindicoController controller = new SindicoController();
+            controller.Excluir(id);
+
+            return RedirectToAction("ListaSindico");
+        }
     }
-    }
+}

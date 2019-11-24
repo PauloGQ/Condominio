@@ -153,6 +153,11 @@
     <Content Include="Views\Home\InserirMorador.cshtml" />
     <Content Include="Views\Home\ExcluirMorador.cshtml" />
     <Content Include="Views\Home\EditarMorador.cshtml" />
+    <Content Include="Views\Home\ListaSindico.cshtml" />
+    <Content Include="Views\Home\VisualizarSindico.cshtml" />
+    <Content Include="Views\Home\InserirSindico.cshtml" />
+    <Content Include="Views\Home\EditarSindico.cshtml" />
+    <Content Include="Views\Home\ExcluirSindico.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
