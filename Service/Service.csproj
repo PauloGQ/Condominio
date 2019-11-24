@@ -63,6 +63,7 @@
     <Compile Include="ComunicadoController.cs" />
     <Compile Include="MoradorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservaController.cs" />
     <Compile Include="SindicoController.cs" />
   </ItemGroup>
   <ItemGroup>

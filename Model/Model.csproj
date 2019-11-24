@@ -63,6 +63,7 @@
     <Compile Include="Comunicado.cs" />
     <Compile Include="Morador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reserva.cs" />
     <Compile Include="Sindico.cs" />
   </ItemGroup>
   <ItemGroup>
