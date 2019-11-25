@@ -3,69 +3,65 @@
 @{
     ViewBag.Title = "InserirComunicado";
 }
+<div class="card o-hidden border-0 shadow-lg mt-0 pt-0 mr-2 ml-2">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="p-5">
 
-<h2>InserirComunicado</h2>
+                    @using (Html.BeginForm(new { @class = "user" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="user">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Cadastrar Comunicado</h1>
+                        </div>
 
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                @Html.EditorFor(model => model.IdSindicoFkComunicado, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.IdSindicoFkComunicado) } })
+                                @Html.ValidationMessageFor(model => model.IdSindicoFkComunicado, "", new { @class = "text-danger" })
+                              
+                            </div>
+                            <div class="col-sm-6">
+                                @Html.EditorFor(model => model.DataComunicado, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.DataComunicado), @type = "date" } })
+                                @Html.ValidationMessageFor(model => model.DataComunicado, "", new { @class = "text-danger" })
+                                
+                            </div>
+                        </div>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Comunicado</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdComunicado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdComunicado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdComunicado, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.Titulo) } })
+                            @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+                            
+                        </div>
+                    
+                        <div class="form-group">
+                                @Html.TextAreaFor(model => model.Descricao, new { @class = "form-control", placeholder = @Html.DisplayNameFor(model => model.Descricao)  })
+                                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                        
+                            </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <a href="@Url.Action("ListarComunicado", "Home/")" class="btn btn-danger btn-user btn-block">
+                                    Voltar
+                                </a>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="submit" class="btn btn-success btn-user btn-block" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataComunicado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DataComunicado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DataComunicado, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdSindicoFkComunicado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdSindicoFkComunicado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdSindicoFkComunicado, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

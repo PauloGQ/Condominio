@@ -163,6 +163,9 @@
     <Content Include="Views\Home\InserirComunicado.cshtml" />
     <Content Include="Views\Home\EditarComunicado.cshtml" />
     <Content Include="Views\Home\ExcluirComunicado.cshtml" />
+    <Content Include="Views\Home\ListaReserva.cshtml" />
+    <Content Include="Views\Home\InserirReserva.cshtml" />
+    <Content Include="Views\Home\ExcluirReserva.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

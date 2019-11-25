@@ -4,55 +4,36 @@
     ViewBag.Title = "VisualizarComunicado";
 }
 
-<h2>VisualizarComunicado</h2>
-
-<div>
-    <h4>Comunicado</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdComunicado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdComunicado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DataComunicado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DataComunicado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdSindicoFkComunicado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdSindicoFkComunicado)
-        </dd>
-
-    </dl>
+<div class="card-header py-1">
+    <h6 class="m-0 font-weight-bold text-primary">
+        <a href="@Url.Action("ListarComunicado", "Home/")" class="btn btn-danger btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-arrow-left"></i>
+            </span>
+            <span class="text">Votar</span>
+        </a>
+    </h6>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<section class="page-section padding-30 py-4 ">
+    <div class="container">
+        <div class="row">
+            <!-- Content -->
+            <div class="col-md-9">
+                <div class="blog-listing">
+
+                    <h2>Comunicados</h2>
+                    <hr class="title-underline">
+                    <div class="post-meta">
+                        <span><i class="fa fa-calendar"></i>@Html.DisplayFor(model => model.DataComunicado, new { @class = "form-control" })</span> <br />
+                    </div>
+                    <h3 class="py-4">@Html.DisplayFor(model => model.Titulo)</h3>
+                    <p>Prezados Srs. Condôminos</p>
+                    <p>
+                        @Html.DisplayFor(model => model.Descricao)
+                    </p>
+                   </div>
+
+            </div>
+        </div>
+    </div>
+</section>

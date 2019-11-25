@@ -26,7 +26,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gray-700 sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gray-800 sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Home")">
@@ -71,16 +71,16 @@
             <!-- Item de Navegação - Clientes -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="@Url.Action("ListarComunicado", "Home")">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-comment-alt"></i>
                     <span>Comunicados</span>
                 </a>
             </li>
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="@Url.Action("ListaFuncionario", "Home")">
-                    <i class="fas fa-user"></i>
-                    <span>Funcionários</span>
+                <a class="nav-link collapsed" href="@Url.Action("ListaReserva", "Home")">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Reserva</span>
                 </a>
             </li>
 
@@ -287,23 +287,13 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-
-
     <script src="~/Scripts/Index.js"></script>
     <script src="~/vendor/jquery/jquery.min.js"></script>
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
     <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
     <script src="~/Scripts/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins
-    <script src="~/vendor/chart.js/Chart.min.js"></script>-->
-    <!-- Page level custom scripts
-    <script src="~/Scripts/js/demo/chart-area-demo.js"></script>
-    <script src="~/Scripts/js/demo/chart-pie-demo.js"></script>-->
+    <!--    MORADOR EXCLUIR E DETALHES  -->
     <script>
         $(function () {
             $(".delete").click(function () {
@@ -325,7 +315,7 @@
             });
         })
     </script>
-
+    <!--    SINDICO EXCLUIR E DETALHES  -->
     <script>
         $(function () {
             $(".delete").click(function () {
@@ -360,12 +350,13 @@
         })
     </script>
 
+    <!-- Reserva EXCLUIR E DETALHES-->
     <script>
         $(function () {
-            $(".detalhe").click(function () {
+            $(".delete").click(function () {
                 var id = $(this).attr("data-id");
-                $("#modaldetalhecomunicado").load("VisualizarComunicado/" + id, function () {
-                    $("#modaldetalhecomunicado").modal();
+                $("#modaldeletereserva").load("ExcluirReserva/" + id, function () {
+                    $("#modaldeletereserva").modal();
                 })
             });
         })
@@ -373,10 +364,6 @@
 
 
 
-
-
-
-    
 
 
     <!--

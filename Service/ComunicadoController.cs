@@ -20,7 +20,7 @@ namespace Service
                 conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    string query = "SELECT IdComunicado, DataComunicado, Titulo, Descricao,IdSindicoFkComunicado FROM comunicado";
+                    string query = "SELECT * FROM comunicado ";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;
@@ -35,9 +35,10 @@ namespace Service
                         List<Comunicado> lstRetorno = ds.Tables["comunicado"].AsEnumerable().Select(x => new Comunicado
                         {
                             IdComunicado = x.Field<int>("IdComunicado"),
-                            DataComunicado = x.Field<DateTime>("DataComunicado"),
                             Titulo = x.Field<string>("Titulo"),
-                            IdSindicoFkComunicado = x.Field<int>("IdSindicoFkComunicado")
+                            DataComunicado = x.Field<DateTime>("DataComunicado"),
+                            Descricao = x.Field<string>("Descricao"),
+                            IdSindicoFkComunicado = x.Field<int>("IdSindicoFkComunicado"),
 
                         }).ToList();
 
@@ -58,7 +59,7 @@ namespace Service
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
 
-                    string query = $"SELECT * FROM comunicado c JOIN sindico s ON c.IdSindicoFkComunicado = s.IdSindico WHERE c.IdComunicado = { id}";
+                    string query = $"SELECT * FROM comunicado c JOIN sindico s ON c.IdSindicoFkComunicado = s.IdSindico WHERE c.IdComunicado = {id}";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;
@@ -113,7 +114,7 @@ namespace Service
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
                     string query = $@"UPDATE comunicado c SET 
-                                    c.DataComunicado = '{registro.DataComunicado}',
+                                    c.DataComunicado = '{registro.DataComunicado:yyyy-MM-dd}',
                                     c.Titulo = '{registro.Titulo}',
                                     c.Descricao = '{registro.Descricao}',
                                     c.IdSindicoFkComunicado = '{registro.IdSindicoFkComunicado}'

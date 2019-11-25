@@ -18,16 +18,21 @@ namespace Model
         [Display(Name = "ID Local")]
         public int IdLocalFkReserva { get; set; }
 
-        [Display(Name = "Data da Solicitação")]
+        [Display(Name = "Data da Solicitacao")]
         public DateTime DataSolicitacao { get; set; }
 
-        [Display(Name = "Data da Solicitação")]
+        [Display(Name = "Data da Reserva")]
         public DateTime DataReserva { get; set; }
 
         [Display(Name = "Nome do Local")]
-        public int NomeLocal { get; set; }
+        public string NomeLocal { get; set; }
 
         [Display(Name = "Valor")]
-        public int Valor { get; set; }
+        public string Valor { get; set; }
+
+        [Display(Name = "Morador")]
+        public string Nome { get; set; }
+
+
     }
 }

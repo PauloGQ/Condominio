@@ -259,5 +259,85 @@ namespace View.Controllers
 
             return RedirectToAction("ListarComunicado");
         }
+
+        //----- Reserva
+        public ActionResult ListaReserva()
+        {
+            //Instancia a controller de RN (SERVICE)
+            ReservaController controller = new ReservaController();
+
+            List<Reserva> lst = controller.Listar();
+
+            return View(lst);
+        }
+
+
+        public ActionResult VisualizarReserva(int id)
+        {
+            ReservaController controller = new ReservaController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+        public ActionResult InserirReserva()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult InserirReserva(Reserva registro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registro);
+            }
+
+            ReservaController controller = new ReservaController();
+            controller.Inserir(registro);
+            return RedirectToAction("ListaReserva");
+        }
+
+
+        public ActionResult EditarReserva(int id)
+        {
+            ReservaController controller = new ReservaController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+        [HttpPost]
+        public ActionResult EditarReserva(Reserva registro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registro);
+            }
+
+            ReservaController controller = new ReservaController();
+            controller.Atualizar(registro);
+
+            return RedirectToAction("ListaReserva");
+        }
+
+        public ActionResult ExcluirReserva(int id)
+        {
+            ReservaController controller = new ReservaController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+
+        [HttpPost, ActionName("ExcluirReserva")]
+        public ActionResult ExcluirReservaConfirmar(int id)
+        {
+            ReservaController controller = new ReservaController();
+            controller.Excluir(id);
+
+            return RedirectToAction("ListaReserva");
+        }
+
     }
 }

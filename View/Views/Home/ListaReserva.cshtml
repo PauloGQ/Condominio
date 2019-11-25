@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Model.Reserva>
+
+@{
+    ViewBag.Title = "ListaReserva";
+}
+<h2>Reservas</h2>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            <a href="@Url.Action("InserirReserva", "Home" )"
+               class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">Nova Reserva</span>
+            </a>
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="text-center ">@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.NomeLocal)</th>
+                        <th>@Html.DisplayNameFor(model => model.DataReserva)</th>
+                        <th>@Html.DisplayNameFor(model => model.Valor)</th>
+                        <th>@Html.DisplayNameFor(model => model.DataSolicitacao)</th>
+
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center border-left-primary">@Html.DisplayFor(modelItem => item.Nome)</td>
+                            <td>@Html.DisplayFor(modelItem => item.NomeLocal)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DataReserva)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Valor)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DataSolicitacao)</td>
+                            <td class="text-center">
+
+                                <a href="@Url.Action("EditarMorador", "Home" , new { id=item.IdReserva })" class="btn btn-success btn-circle btn-sm">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+
+                                <button class="btn btn-danger btn-circle btn-sm delete" data-id="@item.IdReserva"><i class="fas fa-trash"></i></button>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modaldeletereserva">
+
+</div>

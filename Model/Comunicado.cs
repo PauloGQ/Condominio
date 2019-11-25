@@ -23,6 +23,8 @@ namespace Model
 
         [Display(Name = "ID Sindico")]
         public int IdSindicoFkComunicado { get; set; }
+     
+
 
     }
 }

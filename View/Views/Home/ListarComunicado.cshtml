@@ -3,67 +3,62 @@
 @{
     ViewBag.Title = "ListarComunicado";
 }
+<h2>Comunicados</h2>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            <a href="@Url.Action("InserirComunicado", "Home" )"
+               class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">Novo Comunicado</span>
+            </a>
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
 
-<h2>ListarComunicado</h2>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="text-center">@Html.DisplayNameFor(model => model.IdComunicado)</th>
+                        <th>@Html.DisplayNameFor(model => model.DataComunicado)</th>
+                        <th>@Html.DisplayNameFor(model => model.Titulo)</th>
+                        <th>@Html.DisplayNameFor(model => model.IdSindicoFkComunicado)</th>
 
-<h6 class="m-0 font-weight-bold text-primary">
-    <a href="@Url.Action("InserirComunicado", "Home" )"
-       class="btn btn-success btn-icon-split">
-        <span class="icon text-white-50">
-            <i class="fas fa-check"></i>
-        </span>
-        <span class="text">Novo Comunicado</span>
-    </a>
-</h6>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdComunicado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataComunicado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdSindicoFkComunicado)
-        </th>
-        <th></th>
-    </tr>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.IdComunicado)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataComunicado)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Titulo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IdSindicoFkComunicado)</td>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdComunicado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataComunicado)
-            </td>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdSindicoFkComunicado)
-            </td>
-            <td>
-                <a href="@Url.Action("EditarComunicado", "Home" , new { id=item.IdComunicado })" class="btn btn-success btn-circle btn-sm">
-                    <i class="fas fa-pencil-alt"></i>
-                </a>
+                        <td class="text-center">
 
-                <a href="@Url.Action("VisualizarComunicado", "Home" , new { id=item.IdComunicado })" class="btn btn-warning btn-circle btn-sm">
-                    <i class="fas fa-info"></i>
-                </a>
+                            <a href="@Url.Action("EditarComunicado", "Home" , new { id=item.IdComunicado })" class="btn btn-success btn-circle btn-sm">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            <a href="@Url.Action("VisualizarComunicado", "Home" , new { id=item.IdComunicado })" class="btn btn-warning btn-circle btn-sm">
+                                <i class="fas fa-info"></i>
+                            </a>
+                            <button class="btn btn-danger btn-circle btn-sm delete" data-id="@item.IdComunicado"><i class="fas fa-trash"></i></button>
 
-                <button class="btn btn-warning btn-circle btn-sm detalhe" data-id="@item.IdComunicado"><i class="fas fa-info"></i></button>
-                <button class="btn btn-danger btn-circle btn-sm delete" data-id="@item.IdComunicado"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
 
-            </td>
-        </tr>
-    }
+        </div>
+    </div>
+</div>
 
-</table>
 <div class="modal" id="modaldetalhecomunicado">
 
 </div>

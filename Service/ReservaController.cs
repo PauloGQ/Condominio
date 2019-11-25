@@ -14,14 +14,14 @@ namespace Service
 
         public List<Reserva> Listar()
         {
-            string strConexao = "SERVER=localhost; DataBase=condominio; UID=root; pwd=";
+            string strConexao = "SERVER=localhost; DataBase=condominio; UID=root; pwd="; 
 
             using (MySqlConnection conn = new MySqlConnection(strConexao))
             {
                 conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    string query = "SELECT IdReserva, Nome, Email,Cpf, telefone FROM morador";
+                    string query = "SELECT l.NomeLocal, l.Valor, m.Nome, r.IdReserva, r.IdMoradorFkReserva, r.IdLocalFkReserva, r.DataSolicitacao, r.DataReserva FROM reserva r JOIN morador m ON r.IdMoradorFkReserva = m.IdMorador JOIN local l ON r.IdLocalFkReserva = l.IdLocal;";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;
@@ -35,11 +35,14 @@ namespace Service
 
                         List<Reserva> lstRetorno = ds.Tables["reserva"].AsEnumerable().Select(x => new Reserva
                         {
-                            IdMorador = x.Field<int>("IdMorador"),
+                            NomeLocal = x.Field<string>("NomeLocal"),
+                            Valor = x.Field<string>("Valor"),
                             Nome = x.Field<string>("Nome"),
-                            Email = x.Field<string>("Email"),
-                            Cpf = x.Field<string>("Cpf"),
-                            Telefone = x.Field<string>("Telefone")
+                            IdReserva = x.Field<int>("IdReserva"),
+                            IdMoradorFkReserva = x.Field<int>("IdMoradorFkReserva"),
+                            IdLocalFkReserva = x.Field<int>("IdLocalFkReserva"),
+                            DataSolicitacao = x.Field<DateTime>("DataSolicitacao"),
+                            DataReserva = x.Field<DateTime>("DataReserva"),
 
                         }).ToList();
 
@@ -49,7 +52,7 @@ namespace Service
             }
         }
 
-        public Morador Buscar(int id)
+        public Reserva Buscar(int id)
         {
             string strConexao = "SERVER=localhost; DataBase=condominio; UID=root; pwd=";
 
@@ -60,27 +63,20 @@ namespace Service
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
 
-                    string query = $"SELECT * FROM morador m JOIN apartamento a ON m.IdApartamentoFkMorador = a.IdApartamento WHERE m.IdMorador = {id}";
+                    string query = $"SELECT * FROM reserva WHERE IdReserva = {id}";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;
 
                     MySqlDataReader reader = cmd.ExecuteReader();
 
-                    Morador retorno = new Morador();
+                    Reserva retorno = new Reserva();
 
                     while (reader.Read())
                     {
 
-                        retorno.IdMorador = (int)reader["IdMorador"];
-                        retorno.Nome = (string)reader["Nome"];
-                        retorno.Email = (string)reader["Email"];
-                        retorno.Cpf = (string)reader["Cpf"];
-                        retorno.Telefone = (string)reader["Telefone"];
-                        retorno.IdApartamentoFkMorador = (int)reader["IdApartamentoFkMorador"];
-                        retorno.Apt = (int)reader["Apt"];
-                        retorno.Bloco = (string)reader["Bloco"];
-                        retorno.Vaga = (string)reader["Vaga"];
+                        retorno.IdReserva = (int)reader["IdReserva"];
+                     
 
 
                     }
@@ -90,7 +86,7 @@ namespace Service
             }
         }
 
-        public void Inserir(Morador registro)
+        public void Inserir(Reserva registro)
         {
             string strConexao = "SERVER=localhost; DataBase=condominio;Allow User Variables=True; UID=root; pwd=";
 
@@ -100,7 +96,7 @@ namespace Service
 
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    string query = $"INSERT INTO morador(IdMorador, Nome, Email, Cpf, Telefone, IdApartamentoFkMorador) VALUES('{registro.IdMorador}', '{registro.Nome}', '{registro.Email}', '{registro.Cpf}', '{registro.Telefone}', '{registro.IdApartamentoFkMorador}');";
+                    string query = $"INSERT INTO `reserva`(`IdReserva`, `IdMoradorFkReserva`, `IdLocalFkReserva`, `DataSolicitacao`, `DataReserva`) VALUES ('{registro.IdReserva}',{registro.IdMoradorFkReserva},{registro.IdLocalFkReserva},{registro.DataSolicitacao:yyyy-MM-dd},{registro.DataReserva:yyyy-MM-dd})";
                     cmd.Connection = conn;
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
@@ -110,7 +106,7 @@ namespace Service
             }
         }
 
-        public void Atualizar(Morador registro)
+        public void Atualizar(Reserva registro)
         {
             string strConexao = "SERVER=localhost; DataBase=condominio; UID=root; pwd=";
 
@@ -120,13 +116,7 @@ namespace Service
 
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    string query = $@"UPDATE morador m SET 
-                                    m.Nome = '{registro.Nome}',
-                                    m.Email = '{registro.Email}',
-                                    m.Cpf = '{registro.Cpf}',
-                                    m.Telefone = '{registro.Telefone}',
-                                    m.IdApartamentoFkMorador = '{registro.IdApartamentoFkMorador}'
-                                    WHERE m.IdMorador = {registro.IdMorador};";
+                    string query = $@"";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;
@@ -146,7 +136,7 @@ namespace Service
 
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    string query = $"DELETE FROM morador WHERE IdMorador = {id}";
+                    string query = $"DELETE FROM reserva WHERE IdReserva = {id}";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;
