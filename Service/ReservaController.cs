@@ -76,8 +76,9 @@ namespace Service
                     {
 
                         retorno.IdReserva = (int)reader["IdReserva"];
-                     
-
+                        retorno.IdMoradorFkReserva = (int)reader["IdMoradorFkReserva"];
+                        retorno.IdLocalFkReserva = (int)reader["IdLocalFkReserva"];
+                        retorno.DataReserva = (DateTime)reader["DataReserva"];
 
                     }
 
