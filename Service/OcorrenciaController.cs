@@ -9,9 +9,9 @@ using System.Data;
 
 namespace Service
 {
-    public class ComunicadoController
+    public class OcorrenciaController
     {
-        public List<Comunicado> Listar()
+        public List<Ocorrencia> Listar()
         {
             string strConexao = "SERVER=localhost; DataBase=condominio; UID=root; pwd=";
 
@@ -20,7 +20,7 @@ namespace Service
                 conn.Open();
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    string query = "SELECT s.NomeSindico, c.IdComunicado, c.Titulo, c.DataComunicado, c.Descricao, c.IdSindicoFkComunicado  FROM comunicado c JOIN sindico s ON c.IdSindicoFkComunicado = s.IdSindico";
+                    string query = "SELECT o.IdOcorrencia, o.IdMoradorFkOcorrencia, o.IdSindicoFkOcorrencia, o.Tipo, o.DataOcorrencia, o.Descricao, o.Status, m.Nome, s.NomeSindico FROM ocorrencia o JOIN morador m ON o.IdMoradorFkOcorrencia = m.IdMorador JOIN sindico s ON o.IdSindicoFkOcorrencia = s.IdSindico;";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;
@@ -30,16 +30,22 @@ namespace Service
                         da.SelectCommand = cmd;
 
                         DataSet ds = new DataSet();
-                        da.Fill(ds, "Comunicado");
+                        da.Fill(ds, "Ocorrencia");
 
-                        List<Comunicado> lstRetorno = ds.Tables["comunicado"].AsEnumerable().Select(x => new Comunicado
+                        List<Ocorrencia> lstRetorno = ds.Tables["ocorrencia"].AsEnumerable().Select(x => new Ocorrencia
                         {
-                            IdComunicado = x.Field<int>("IdComunicado"),
-                            Titulo = x.Field<string>("Titulo"),
-                            DataComunicado = x.Field<DateTime>("DataComunicado"),
+                            IdOcorrencia = x.Field<int>("IdOcorrencia"),
+                            IdMoradorFkOcorrencia = x.Field<int>("IdMoradorFkOcorrencia"),
+                            IdSindicoFkOcorrencia = x.Field<int>("IdSindicoFkOcorrencia"),
+                            Tipo = x.Field<string>("Tipo"),
+                            DataOcorrencia = x.Field<string>("DataOcorrencia"),
                             Descricao = x.Field<string>("Descricao"),
-                            IdSindicoFkComunicado = x.Field<int>("IdSindicoFkComunicado"),
+                            Nome = x.Field<string>("Nome"),
                             NomeSindico = x.Field<string>("NomeSindico"),
+                            Status = x.Field<string>("Status"),
+
+
+
 
                         }).ToList();
 
@@ -49,7 +55,7 @@ namespace Service
             }
         }
 
-        public Comunicado Buscar(int id)
+        public Ocorrencia Buscar(int id)
         {
             string strConexao = "SERVER=localhost; DataBase=condominio; UID=root; pwd=";
 
@@ -60,23 +66,28 @@ namespace Service
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
 
-                    string query = $"SELECT * FROM comunicado c JOIN sindico s ON c.IdSindicoFkComunicado = s.IdSindico WHERE c.IdComunicado = {id}";
+                    string query = $"SELECT * FROM ocorrencia o JOIN sindico s ON o.IdSindicoFkOcorrencia = s.IdSindico JOIN morador m ON o.IdMoradorFkOcorrencia = m.IdMorador WHERE o.IdOcorrencia = {id}";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;
 
                     MySqlDataReader reader = cmd.ExecuteReader();
 
-                    Comunicado retorno = new Comunicado();
+                    Ocorrencia retorno = new Ocorrencia();
 
                     while (reader.Read())
                     {
 
-                        retorno.IdComunicado = (int)reader["IdComunicado"];
-                        retorno.DataComunicado = (DateTime)reader["DataComunicado"];
-                        retorno.Titulo = (string)reader["Titulo"];
+                        retorno.IdOcorrencia = (int)reader["IdOcorrencia"];
+                        retorno.IdMoradorFkOcorrencia = (int)reader["IdMoradorFkOcorrencia"];
+                        retorno.IdSindicoFkOcorrencia = (int)reader["IdSindicoFkOcorrencia"];
+                        retorno.Tipo = (string)reader["Tipo"];
+                        retorno.DataOcorrencia = (string)reader["DataOcorrencia"];
                         retorno.Descricao = (string)reader["Descricao"];
-                        retorno.IdSindicoFkComunicado = (int)reader["IdSindicoFkComunicado"];
+                        retorno.Nome = (string)reader["Nome"];
+                        retorno.NomeSindico = (string)reader["NomeSindico"];
+                        retorno.Status = (string)reader["Status"];
+
                     }
 
                     return retorno;
@@ -84,7 +95,7 @@ namespace Service
             }
         }
 
-        public void Inserir(Comunicado registro)
+        public void Inserir(Ocorrencia registro)
         {
             string strConexao = "SERVER=localhost; DataBase=condominio;Allow User Variables=True; UID=root; pwd=";
 
@@ -94,7 +105,7 @@ namespace Service
 
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    string query = $"INSERT INTO comunicado(IdComunicado, Titulo, DataComunicado, Descricao, IdSindicoFkComunicado) VALUES('{registro.IdComunicado}', '{registro.Titulo}', '{registro.DataComunicado:yyyy-MM-dd}', '{registro.Descricao}', '{registro.IdSindicoFkComunicado}');";
+                    string query = $"INSERT INTO ocorrencia(IdOcorrencia, IdMoradorFkOcorrencia, IdSindicoFkOcorrencia, Tipo, DataOcorrencia,Descricao, Status) VALUES('{registro.IdOcorrencia}', '{registro.IdMoradorFkOcorrencia}', '{registro.IdSindicoFkOcorrencia}', '{registro.Tipo}', '{registro.DataOcorrencia}',  '{registro.Descricao}', '{registro.Status}');";
                     cmd.Connection = conn;
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
@@ -104,7 +115,7 @@ namespace Service
             }
         }
 
-        public void Atualizar(Comunicado registro)
+        public void Atualizar(Ocorrencia registro)
         {
             string strConexao = "SERVER=localhost; DataBase=condominio; UID=root; pwd=";
 
@@ -114,12 +125,7 @@ namespace Service
 
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    string query = $@"UPDATE comunicado c SET 
-                                    c.DataComunicado = '{registro.DataComunicado:yyyy-MM-dd}',
-                                    c.Titulo = '{registro.Titulo}',
-                                    c.Descricao = '{registro.Descricao}',
-                                    c.IdSindicoFkComunicado = '{registro.IdSindicoFkComunicado}'
-                                    WHERE c.IdComunicado = {registro.IdComunicado};";
+                    string query = $@"";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;
@@ -129,7 +135,6 @@ namespace Service
             }
         }
 
-        
         public void Excluir(int id)
         {
             string strConexao = "SERVER=localhost; DataBase=condominio; UID=root; pwd=";
@@ -140,7 +145,7 @@ namespace Service
 
                 using (MySqlCommand cmd = new MySqlCommand())
                 {
-                    string query = $"DELETE FROM comunicado WHERE IdComunicado = {id}";
+                    string query = $"DELETE FROM ocorrencia WHERE IdOcorrencia = {id}";
 
                     cmd.Connection = conn;
                     cmd.CommandText = query;

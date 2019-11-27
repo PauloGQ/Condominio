@@ -167,6 +167,11 @@
     <Content Include="Views\Home\InserirReserva.cshtml" />
     <Content Include="Views\Home\ExcluirReserva.cshtml" />
     <Content Include="Views\Home\EditarReserva.cshtml" />
+    <Content Include="Views\Home\ListaOcorrencia.cshtml" />
+    <Content Include="Views\Home\Emergencia.cshtml" />
+    <Content Include="Views\Home\VisualizarOcorrencia.cshtml" />
+    <Content Include="Views\Home\ExcluirOcorrencia.cshtml" />
+    <Content Include="Views\Home\InserirOcorrencia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

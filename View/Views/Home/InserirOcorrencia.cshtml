@@ -1,0 +1,69 @@
+﻿@model Model.Ocorrencia
+
+@{
+    ViewBag.Title = "InserirOcorrencia";
+}
+<div class="card o-hidden border-0 shadow-lg mt-0 pt-0 mr-2 ml-2">
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="p-5">
+
+                    @using (Html.BeginForm(new { @class = "user" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="user">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Cadastrar Ocorrência</h1>
+                        </div>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.Tipo) } })
+                            @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                @Html.EditorFor(model => model.IdSindicoFkOcorrencia, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.IdSindicoFkOcorrencia) } })
+                                @Html.ValidationMessageFor(model => model.IdSindicoFkOcorrencia, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-sm-6">
+                                @Html.EditorFor(model => model.IdMoradorFkOcorrencia, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.IdMoradorFkOcorrencia) } })
+                                @Html.ValidationMessageFor(model => model.IdMoradorFkOcorrencia, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.DataOcorrencia, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.DataOcorrencia) } })
+                            @Html.ValidationMessageFor(model => model.DataOcorrencia, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.Descricao) } })
+                            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.Status) } })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <a href="@Url.Action("ListaOcorrencia", "Home/")" class="btn btn-danger btn-user btn-block">
+                                    Voltar
+                                </a>
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="submit" class="btn btn-success btn-user btn-block" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+        </div>
+    </div>
+</div>

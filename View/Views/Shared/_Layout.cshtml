@@ -84,8 +84,19 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="@Url.Action("ListaOcorrencia", "Home")">
+                    <i class="fas fa-book"></i>
+                    <span>Livro de Ocorrência</span>
+                </a>
+            </li>
 
-
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="@Url.Action("Emergencia", "Home")">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Contato</span>
+                </a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -361,7 +372,17 @@
             });
         })
     </script>
-
+    <!--  OCORRENCIA EXCLUIR-->
+    <script>
+        $(function () {
+            $(".delete").click(function () {
+                var id = $(this).attr("data-id");
+                $("#modaldeleteocorrencia").load("ExcluirOcorrencia/" + id, function () {
+                    $("#modaldeleteocorrencia").modal();
+                })
+            });
+        })
+    </script>
 
 
 

@@ -18,7 +18,7 @@
                                 <h1 class="h4 text-gray-900 mb-4">Cadastrar Síndico</h1>
                             </div>
                             <div class="form-group">
-                                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.Nome) } })
+                                @Html.EditorFor(model => model.NomeSindico, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.NomeSindico) } })
                                 @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
                             </div>
 

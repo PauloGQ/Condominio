@@ -15,13 +15,22 @@ namespace View.Controllers
         public ActionResult Index()
         {
             //Instancia a controller de RN (SERVICE)
+            ComunicadoController controller = new ComunicadoController();
+
+            List<Comunicado> lst = controller.Listar();
+
+            return View(lst);
+        }
+
+        public ActionResult Emergencia()
+        {
+            //Instancia a controller de RN (SERVICE)
             MoradorController controller = new MoradorController();
 
             List<Morador> lst = controller.Listar();
 
             return View(lst);
         }
-
 
         public ActionResult ListaMorador()
         {
@@ -338,6 +347,87 @@ namespace View.Controllers
 
             return RedirectToAction("ListaReserva");
         }
+
+        //----- Ocorrencia
+        public ActionResult ListaOcorrencia()
+        {
+            //Instancia a controller de RN (SERVICE)
+            OcorrenciaController controller = new OcorrenciaController();
+
+            List<Ocorrencia> lst = controller.Listar();
+
+            return View(lst);
+        }
+
+
+        public ActionResult VisualizarOcorrencia(int id)
+        {
+            OcorrenciaController controller = new OcorrenciaController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+        public ActionResult InserirOcorrencia()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult InserirOcorrencia(Ocorrencia registro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registro);
+            }
+
+            OcorrenciaController controller = new OcorrenciaController();
+            controller.Inserir(registro);
+            return RedirectToAction("ListaOcorrencia");
+        }
+
+
+        public ActionResult EditarOcorrencia(int id)
+        {
+            OcorrenciaController controller = new OcorrenciaController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+        [HttpPost]
+        public ActionResult EditarOcorrencia(Ocorrencia registro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(registro);
+            }
+
+            OcorrenciaController controller = new OcorrenciaController();
+            controller.Atualizar(registro);
+
+            return RedirectToAction("ListaOcorrencia");
+        }
+
+        public ActionResult ExcluirOcorrencia(int id)
+        {
+            OcorrenciaController controller = new OcorrenciaController();
+            var registro = controller.Buscar(id);
+
+            return View(registro);
+        }
+
+
+        [HttpPost, ActionName("ExcluirOcorrencia")]
+        public ActionResult ExcluirOcorrenciaConfirmar(int id)
+        {
+            OcorrenciaController controller = new OcorrenciaController();
+            controller.Excluir(id);
+
+            return RedirectToAction("ListaOcorrencia");
+        }
+
+
 
     }
 }

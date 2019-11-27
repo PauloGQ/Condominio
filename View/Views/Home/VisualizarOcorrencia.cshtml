@@ -1,0 +1,57 @@
+﻿@model Model.Ocorrencia
+
+@{
+    ViewBag.Title = "VisualizarOcorrencia";
+}
+<div class="card-header py-1">
+    <h6 class="m-0 font-weight-bold text-primary">
+        <a href="@Url.Action("ListaOcorrencia", "Home/")" class="btn btn-danger btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-arrow-left"></i>
+            </span>
+            <span class="text">Votar</span>
+        </a>
+    </h6>
+</div>
+<section class="page-section padding-30 py-4 ">
+
+    <div class="row">
+        <!-- Content -->
+        <div class="col-md-9">
+            <div class="blog-listing">
+                <h2>Ocorrência de @Html.DisplayFor(model => model.Nome)</h2>
+                <hr class="title-underline">
+                <div class="post-meta">
+                    <span><i class="fa fa-calendar"></i> @Html.DisplayFor(model => model.DataOcorrencia)</span> <br />
+                </div>
+
+                <div class="post-meta">
+
+                    <span>
+                        @Html.DisplayNameFor(model => model.IdOcorrencia) : @Html.DisplayFor(model => model.IdOcorrencia)
+                    </span> <br />
+                </div>
+
+
+                <div class="post-meta">
+                    <span>
+                        @Html.DisplayNameFor(model => model.NomeSindico) : @Html.DisplayFor(model => model.NomeSindico)
+                    </span> <br />
+                </div>
+                <div class="post-meta">
+
+                    <span>
+                        @Html.DisplayNameFor(model => model.Status) : @Html.DisplayFor(model => model.Status)
+                    </span> <br />
+                </div>
+
+                <h3 class="py-4"> @Html.DisplayFor(model => model.Tipo)</h3>
+                <p>
+                    @Html.DisplayFor(model => model.Descricao)
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</section>

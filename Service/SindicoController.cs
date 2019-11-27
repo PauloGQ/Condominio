@@ -20,7 +20,7 @@ namespace Service
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand())
                     {
-                        string query = "SELECT IdSindico, Nome, Email,Cpf, telefone FROM sindico";
+                        string query = "SELECT IdSindico, NomeSindico, Email,Cpf, telefone FROM sindico";
 
                         cmd.Connection = conn;
                         cmd.CommandText = query;
@@ -35,7 +35,7 @@ namespace Service
                             List<Sindico> lstRetorno = ds.Tables["sindico"].AsEnumerable().Select(x => new Sindico
                             {
                                 IdSindico = x.Field<int>("IdSindico"),
-                                Nome = x.Field<string>("Nome"),
+                                NomeSindico = x.Field<string>("NomeSindico"),
                                 Email = x.Field<string>("Email"),
                                 Cpf = x.Field<string>("Cpf"),
                                 Telefone = x.Field<string>("Telefone")
@@ -72,7 +72,7 @@ namespace Service
                         {
 
                             retorno.IdSindico = (int)reader["IdSindico"];
-                            retorno.Nome = (string)reader["Nome"];
+                            retorno.NomeSindico = (string)reader["NomeSindico"];
                             retorno.Email = (string)reader["Email"];
                             retorno.Cpf = (string)reader["Cpf"];
                             retorno.Telefone = (string)reader["Telefone"];
@@ -95,7 +95,7 @@ namespace Service
 
                     using (MySqlCommand cmd = new MySqlCommand())
                     {
-                        string query = $"INSERT INTO sindico(IdSindico, Nome, Email, Cpf, Telefone) VALUES('{registro.IdSindico}', '{registro.Nome}', '{registro.Email}', '{registro.Cpf}', '{registro.Telefone}');";
+                        string query = $"INSERT INTO sindico(IdSindico, NomeSindico, Email, Cpf, Telefone) VALUES('{registro.IdSindico}', '{registro.NomeSindico}', '{registro.Email}', '{registro.Cpf}', '{registro.Telefone}');";
                         cmd.Connection = conn;
                         cmd.CommandText = query;
                         cmd.ExecuteNonQuery();
@@ -116,7 +116,7 @@ namespace Service
                     using (MySqlCommand cmd = new MySqlCommand())
                     {
                         string query = $@"UPDATE sindico s SET 
-                                    s.Nome = '{registro.Nome}',
+                                    s.NomeSindico = '{registro.NomeSindico}',
                                     s.Email = '{registro.Email}',
                                     s.Cpf = '{registro.Cpf}',
                                     s.Telefone = '{registro.Telefone}'

@@ -32,9 +32,8 @@
 
                             </div>
                             <div class="col-sm-6">
-                                @Html.EditorFor(model => model.DataComunicado, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.DataComunicado)} })
+                                @Html.EditorFor(model => model.DataComunicado, new { htmlAttributes = new { @class = "form-control form-control-user", placeholder = @Html.DisplayNameFor(model => model.DataComunicado), @type = "date" } })
                                 @Html.ValidationMessageFor(model => model.DataComunicado, "", new { @class = "text-danger" })
-
                             </div>
                         </div>
 

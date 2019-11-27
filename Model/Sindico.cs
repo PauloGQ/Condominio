@@ -15,7 +15,7 @@ namespace Model
         [Display(Name = "Nome Completo")]
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "O campo {0} deve conter entre {2} e {1} caracteres")]
-        public string Nome { get; set; }
+        public string NomeSindico { get; set; }
 
         [Display(Name = "E-mail")]
         [EmailAddress(ErrorMessage = "O campo {0} é inválido")]

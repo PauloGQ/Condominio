@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Model.Ocorrencia>
+
+@{
+    ViewBag.Title = "ListaOcorrencia";
+}
+
+<h2>Ocorrência</h2>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            <a href="@Url.Action("InserirOcorrencia", "Home" )"
+               class="btn btn-success btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">Nova Ocorrência</span>
+            </a>
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="text-center">@Html.DisplayNameFor(model => model.IdOcorrencia)</th>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.NomeSindico)</th>
+                        <th class="text-center" >@Html.DisplayNameFor(model => model.Tipo)</th>
+                        <th>@Html.DisplayNameFor(model => model.DataOcorrencia)</th>
+                        <th class="text-center">@Html.DisplayNameFor(model => model.Status)</th>
+
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.IdOcorrencia)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Nome)</td>
+                        <td>@Html.DisplayFor(modelItem => item.NomeSindico)</td>
+                        <td class="text-center border-left-danger" >@Html.DisplayFor(modelItem => item.Tipo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataOcorrencia)</td>
+                        <td class="text-center border-left-primary">@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td class="text-center">
+
+                            <a href="@Url.Action("EditarOcorrencia", "Home" , new { id=item.IdOcorrencia })" class="btn btn-success btn-circle btn-sm">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+
+                            <a href="@Url.Action("VisualizarOcorrencia", "Home" , new { id=item.IdOcorrencia })" class="btn btn-warning btn-circle btn-sm">
+                                <i class="fas fa-info"></i>
+                            </a>
+                            <button class="btn btn-danger btn-circle btn-sm delete" data-id="@item.IdOcorrencia"><i class="fas fa-trash"></i></button>
+
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modaldeleteocorrencia">
+
+</div>
+
